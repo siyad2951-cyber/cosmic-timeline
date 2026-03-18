@@ -174,9 +174,9 @@ exports.getSkyEvents = async (req, res, next) => {
         // For known years, use static data with detailed descriptions
         // For unknown years, scrape meteor showers
         if (year === 2025) {
-            events = [...skyEvents2025];
+            events = JSON.parse(JSON.stringify(skyEvents2025));
         } else if (year === 2026) {
-            events = [...skyEvents2026];
+            events = JSON.parse(JSON.stringify(skyEvents2026));
         } else {
             // Scrape meteor showers for unknown years
             try {

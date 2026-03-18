@@ -36,7 +36,7 @@ exports.getAPOD = async (req, res, next) => {
 
         try {
             const response = await axios.get(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}`, {
-                timeout: 25000
+                timeout: 8000
             });
             console.log(`[APOD] NASA API Success: ${response.status}`);
 
