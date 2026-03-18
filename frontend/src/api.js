@@ -53,6 +53,12 @@ async function fetchAPI(endpoint, params = {}, options = {}) {
 
     return data;
   } catch (error) {
+    if (error instanceof TypeError && error.message === 'Failed to fetch') {
+      const netErr = new Error(`Network error: Cannot reach backend at ${API_BASE_URL}. Is the server running?`);
+      netErr.isNetworkError = true;
+      console.error(`API Network Error [${endpoint}]:`, netErr.message);
+      throw netErr;
+    }
     console.error(`API Fetch Error [${endpoint}]:`, error);
     throw error;
   }
